@@ -1,6 +1,6 @@
 'use client';
 
-
+import Header from "@/components/Header";
 import NoiseBackground from "@/components/NoiseBackground";
 import Dock from "@/components/Dock";
 import ProjectCard from "@/components/ProjectCard";
@@ -49,7 +49,7 @@ const articles = [
 export default function Home() {
     return (
         <main className="snap-container no-scrollbar">
-
+            <Header />
             <NoiseBackground />
             <Dock />
 
@@ -71,7 +71,7 @@ export default function Home() {
                         className="font-serif text-6xl md:text-9xl leading-[0.9] mb-8"
                     >
                         CODE & <br />
-                        <span className="italic text-gray-400 text-[0.85em]">ENTROPY</span>
+                        <span className="italic text-gray-400 text-[0.85em]">LIFE</span>
                     </motion.h1>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
