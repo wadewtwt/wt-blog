@@ -1,6 +1,6 @@
 'use client';
 
-import CustomCursor from "@/components/CustomCursor";
+
 import NoiseBackground from "@/components/NoiseBackground";
 import Dock from "@/components/Dock";
 import ProjectCard from "@/components/ProjectCard";
@@ -49,7 +49,7 @@ const articles = [
 export default function Home() {
     return (
         <main className="snap-container no-scrollbar">
-            <CustomCursor />
+
             <NoiseBackground />
             <Dock />
 

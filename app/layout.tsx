@@ -15,8 +15,30 @@ const italiana = Italiana({
 });
 
 export const metadata: Metadata = {
-    title: "WT Blog",
-    description: "Exploring the boundary between logical systems and artistic chaos.",
+    title: {
+        default: "WT Blog | 创意开发者作品集",
+        template: "%s | WT Blog",
+    },
+    description: "WT Blog 专注于探索逻辑系统与艺术混沌的边界，分享前沿 Web 技术与数字艺术。",
+    keywords: ["Next.js", "React", "前端开发", "设计", "作品集", "Digital Artisan"],
+    authors: [{ name: "WT" }],
+    creator: "WT",
+    openGraph: {
+        type: "website",
+        locale: "zh_CN",
+        url: "https://your-domain.com",
+        title: "WT Blog | 构建会呼吸的数字体验",
+        description: "探索逻辑系统与艺术混沌的边界。",
+        siteName: "WT Blog",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "WT Blog | 创意开发者作品集",
+        description: "探索逻辑系统与艺术混沌的边界。",
+    },
+    alternates: {
+        canonical: "/",
+    },
 };
 
 export default function RootLayout({

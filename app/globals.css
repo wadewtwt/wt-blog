@@ -8,32 +8,6 @@ body {
   background-color: #FAFAFA;
   color: #18181B;
   overflow-x: hidden;
-  cursor: none;
-}
-
-/* Custom Cursor */
-.cursor-dot,
-.cursor-outline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #18181B;
-}
-
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(24, 24, 27, 0.5);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
 
 /* Noise Texture */
