@@ -48,63 +48,113 @@ const articles = [
 
 export default function Home() {
     return (
-        <main className="snap-container no-scrollbar">
+        <main>
             <Header />
             <NoiseBackground />
             <Dock />
 
             {/* Hero Section */}
-            <section id="hero" className="snap-section px-6 md:px-20">
-                <div className="max-w-7xl mx-auto w-full">
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="text-sm md:text-base uppercase tracking-[0.2em] mb-4 text-gray-500"
-                    >
-                        Portfolio 2024
-                    </motion.p>
-                    <motion.h1
-                        initial={{ opacity: 0, scaleY: 1.1, y: 50 }}
-                        whileInView={{ opacity: 1, scaleY: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
-                        className="font-serif text-6xl md:text-9xl leading-[0.9] mb-8"
-                    >
-                        CODE & <br />
-                        <span className="italic text-gray-400 text-[0.85em]">LIFE</span>
-                    </motion.h1>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                        className="flex flex-col md:flex-row justify-between items-start md:items-end border-t border-gray-200 pt-8 mt-12"
-                    >
-                        <div className="max-w-md mb-8 md:mb-0">
-                            <p className="text-lg text-gray-600 leading-relaxed">
-                                Exploring the boundary between logical systems and artistic chaos.
-                                Building digital experiences that breathe.
+            <section id="hero" className="min-h-[90vh] flex flex-col justify-center px-6 md:px-20 pt-32 pb-20 overflow-hidden">
+                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div className="lg:col-span-7 flex flex-col justify-center">
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.1 }}
+                            className="text-sm md:text-base uppercase tracking-[0.2em] mb-4 text-gray-500"
+                        >
+                            PORTFOLIO 2024
+                        </motion.p>
+                        <motion.h1
+                            initial={{ opacity: 0, scaleY: 1.1, y: 50 }}
+                            whileInView={{ opacity: 1, scaleY: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
+                            className="font-serif text-6xl md:text-8xl leading-[1.0] mb-8 text-gray-900"
+                        >
+                            CODE, DESIGN <br />
+                            <span className="italic text-gray-400">& LIFE</span>
+                        </motion.h1>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="mb-8 border-l-4 border-gray-200 pl-6"
+                        >
+                            <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
+                                你好！我是一名热衷于构建数字体验的开发者。这里是我的数字花园，记录我关于技术、设计与日常生活的思考。
                             </p>
-                        </div>
-                        <div className="text-right">
-                            <p className="font-bold">Shanghai based</p>
-                            <p className="text-gray-500">Available for freelance</p>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="flex flex-wrap items-center gap-4"
+                        >
+                            <a href="https://blog.example.com" target="_blank" rel="noreferrer" className="px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all text-sm font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-200">
+                                访问我的博客 ↗
+                            </a>
+                            <a href="#contact" className="px-6 py-3 border border-gray-300 rounded-full hover:border-gray-900 hover:text-gray-900 text-gray-600 transition-colors text-sm font-medium">
+                                联系我
+                            </a>
+                        </motion.div>
+                    </div>
+
+                    <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+                        {/* 博客文章推荐模块 */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5, duration: 0.8 }}
+                            className="p-6 md:p-8 rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                        >
+                            <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-semibold flex items-center justify-between">
+                                <span>最新文章</span>
+                                <a href="#thoughts" className="text-blue-500 hover:text-blue-600 normal-case tracking-normal">更多 →</a>
+                            </h3>
+                            <ul className="space-y-5">
+                                {articles.slice(0, 2).map((article, i) => (
+                                    <li key={i} className="group cursor-pointer">
+                                        <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-[17px] mb-1">{article.title}</h4>
+                                        <p className="text-sm text-gray-500 line-clamp-1">{article.excerpt}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+
+                        {/* 常用工具模块 */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.6, duration: 0.8 }}
+                            className="p-6 md:p-8 rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                        >
+                            <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-semibold">
+                                日常工具栈
+                            </h3>
+                            <div className="flex flex-wrap gap-2.5">
+                                {['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Figma', 'Node.js', 'VS Code'].map((tool, i) => (
+                                    <span key={i} className="px-3.5 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-100 transition-colors cursor-default">
+                                        {tool}
+                                    </span>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* Works Section */}
-            <section id="work" className="snap-section bg-[#18181B] text-white px-0 relative overflow-hidden">
+            <section id="work" className="py-24 bg-white text-gray-900 px-0 relative overflow-hidden border-y border-gray-100">
                 <div
-                    className="absolute inset-0 opacity-20 pointer-events-none"
-                    style={{ backgroundImage: 'radial-gradient(#4f4f4f 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+                    className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                    style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}
                 />
 
-                <div className="px-6 md:px-20 py-20 h-full flex flex-col justify-center">
+                <div className="px-6 md:px-20 h-full flex flex-col justify-center relative">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="font-serif text-4xl md:text-5xl mb-12 mix-blend-difference"
+                        className="font-serif text-4xl md:text-5xl mb-12"
                     >
                         Selected Works
                     </motion.h2>
@@ -118,7 +168,7 @@ export default function Home() {
             </section>
 
             {/* Thoughts Section */}
-            <section id="thoughts" className="snap-section px-6 md:px-20">
+            <section id="thoughts" className="py-24 px-6 md:px-20">
                 <div className="max-w-4xl mx-auto w-full">
                     <div className="flex items-center gap-4 mb-16">
                         <motion.h2
@@ -145,12 +195,12 @@ export default function Home() {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="snap-section px-6 md:px-20 bg-[#18181B] text-white">
-                <div className="max-w-5xl mx-auto w-full text-center">
+            <section id="contact" className="py-32 px-6 md:px-20 bg-gray-50 text-gray-900 flex flex-col justify-center min-h-[60vh] border-t border-gray-100">
+                <div className="max-w-5xl mx-auto w-full text-center relative z-10">
                     <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-sm uppercase tracking-[0.2em] mb-8 text-gray-500"
+                        className="text-sm uppercase tracking-[0.2em] mb-8 text-gray-400 font-medium"
                     >
                         Get in Touch
                     </motion.p>
@@ -159,7 +209,7 @@ export default function Home() {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="font-serif text-5xl md:text-8xl hover:text-gray-300 transition-colors block mb-12 cursor-pointer"
+                        className="font-serif text-5xl md:text-8xl hover:text-gray-500 transition-colors block mb-12 cursor-pointer text-gray-900"
                     >
                         hello@example.com
                     </motion.a>
@@ -170,16 +220,16 @@ export default function Home() {
                         transition={{ delay: 0.3 }}
                         className="flex justify-center gap-8"
                     >
-                        <a href="#" className="text-lg hover:underline underline-offset-4 cursor-pointer">GitHub</a>
-                        <a href="#" className="text-lg hover:underline underline-offset-4 cursor-pointer">Twitter</a>
-                        <a href="#" className="text-lg hover:underline underline-offset-4 cursor-pointer">Instagram</a>
+                        <a href="#" className="text-lg text-gray-500 hover:text-gray-900 transition-colors hover:underline underline-offset-4 cursor-pointer">GitHub</a>
+                        <a href="#" className="text-lg text-gray-500 hover:text-gray-900 transition-colors hover:underline underline-offset-4 cursor-pointer">Twitter</a>
+                        <a href="#" className="text-lg text-gray-500 hover:text-gray-900 transition-colors hover:underline underline-offset-4 cursor-pointer">Instagram</a>
                     </motion.div>
 
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
-                        className="mt-32 text-gray-600 text-sm"
+                        className="mt-32 text-gray-400 text-sm"
                     >
                         &copy; 2024 Digital Artisan. Designed with purpose.
                     </motion.div>
