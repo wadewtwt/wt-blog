@@ -195,43 +195,75 @@ export default function Home() {
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="py-32 px-6 md:px-20 bg-gray-50 text-gray-900 flex flex-col justify-center min-h-[60vh] border-t border-gray-100">
+            <section id="contact" className="py-32 px-6 md:px-20 bg-gray-50 text-gray-900 flex flex-col justify-center min-h-[70vh] border-t border-gray-100 relative overflow-hidden">
+                {/* Decorative background element */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-50/50 rounded-full blur-[120px] -z-0 pointer-events-none" />
+
                 <div className="max-w-5xl mx-auto w-full text-center relative z-10">
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="text-sm uppercase tracking-[0.2em] mb-8 text-gray-400 font-medium"
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        Get in Touch
-                    </motion.p>
+                        <p className="text-sm uppercase tracking-[0.3em] mb-6 text-gray-400 font-semibold">
+                            Let&apos;s build something great
+                        </p>
+                        <h2 className="font-serif text-4xl md:text-6xl mb-12 tracking-tight">
+                            Ready to start a <span className="italic">new adventure?</span>
+                        </h2>
+                    </motion.div>
+
                     <motion.a
                         href="mailto:hello@example.com"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="font-serif text-5xl md:text-8xl hover:text-gray-500 transition-colors block mb-12 cursor-pointer text-gray-900"
+                        className="font-serif text-5xl md:text-8xl hover:text-blue-600 transition-colors block mb-16 cursor-pointer text-gray-900 leading-none"
                     >
-                        hello@example.com
+                        hello@wade.wt
                     </motion.a>
 
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex justify-center gap-8"
-                    >
-                        <a href="#" className="text-lg text-gray-500 hover:text-gray-900 transition-colors hover:underline underline-offset-4 cursor-pointer">GitHub</a>
-                        <a href="#" className="text-lg text-gray-500 hover:text-gray-900 transition-colors hover:underline underline-offset-4 cursor-pointer">Twitter</a>
-                        <a href="#" className="text-lg text-gray-500 hover:text-gray-900 transition-colors hover:underline underline-offset-4 cursor-pointer">Instagram</a>
-                    </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left border-t border-gray-200 pt-16">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">Socials</h3>
+                            <div className="flex flex-col gap-3">
+                                <a href="#" className="text-lg text-gray-600 hover:text-blue-600 transition-colors w-fit">GitHub</a>
+                                <a href="#" className="text-lg text-gray-600 hover:text-blue-600 transition-colors w-fit">Twitter</a>
+                                <a href="#" className="text-lg text-gray-600 hover:text-blue-600 transition-colors w-fit">LinkedIn</a>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">Location</h3>
+                            <p className="text-lg text-gray-600">Based in Shanghai, China <br />Working Worldwide.</p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">Last Updated</h3>
+                            <p className="text-lg text-gray-600">February 2024 <br />Built with Next.js & Love.</p>
+                        </motion.div>
+                    </div>
 
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-32 text-gray-400 text-sm"
+                        transition={{ delay: 0.6 }}
+                        className="mt-32 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-400 text-[10px] uppercase tracking-widest border-t border-gray-100 pt-8"
                     >
-                        &copy; 2024 Digital Artisan. Designed with purpose.
+                        <p>&copy; 2024 WADE.WT. ALL RIGHTS RESERVED.</p>
+                        <p>DESIGNED WITH PURPOSE & MANIFESTO.</p>
                     </motion.div>
                 </div>
             </section>

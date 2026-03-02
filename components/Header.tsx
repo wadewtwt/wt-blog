@@ -52,47 +52,88 @@ export default function Header() {
         };
     }, []);
 
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const WeatherIcon = weather?.icon || CloudSun;
+    const weekDay = time.toLocaleDateString('en-US', { weekday: 'long' });
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 md:px-12 pointer-events-none">
-            <div className="max-w-7xl mx-auto flex justify-end items-start text-foreground">
+        <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-4' : 'py-8'}`}>
+            <div className={`absolute inset-0 bg-white/70 backdrop-blur-xl transition-opacity duration-500 ${scrolled ? 'opacity-100 border-b border-gray-100 shadow-sm' : 'opacity-0'}`} />
+
+            <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center relative z-10">
+                {/* Left: Branding */}
                 <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="flex flex-col items-end gap-1 font-sans text-[10px] uppercase tracking-[0.2em] text-gray-400"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="cursor-pointer group pointer-events-auto"
                 >
-                    <div className="flex items-center gap-2 mb-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-foreground font-medium">Available for new projects</span>
-                    </div>
-
                     <div className="flex items-center gap-3">
-                        {/* Time & Location */}
-                        <div className="flex items-center gap-3 pointer-events-auto">
-                            <div className="flex items-center gap-1.5 min-w-[65px] justify-end">
-                                <Clock className="w-3 h-3 text-foreground/60" />
-                                <span>{time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
-                            </div>
-                            <div className="flex items-center gap-1.5 border-l border-foreground/10 pl-3">
-                                <MapPin className="w-3 h-3 text-foreground/60" />
-                                <span>SHANGHAI, CN</span>
-                            </div>
-                        </div>
-
-                        {/* Weather Real-time */}
-                        <div className="flex items-center gap-1.5 border-l border-foreground/10 pl-3 lowercase tracking-normal font-medium text-foreground/80 min-w-[80px] justify-end">
-                            <WeatherIcon className="w-3.5 h-3.5" />
-                            <span>{weather ? `${weather.temp}°c ${weather.description}` : 'loading...'}</span>
-                        </div>
+                        <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center text-white font-serif text-xl group-hover:rotate-[10deg] transition-transform duration-300 shadow-lg shadow-gray-200">W</div>
+                        <span className="font-serif text-xl font-semibold tracking-tight hidden sm:block text-gray-900">Wade.wt</span>
                     </div>
                 </motion.div>
+
+                {/* Center: Time & Manifesto */}
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="hidden lg:flex flex-col items-center gap-1 pointer-events-auto"
+                >
+                    <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">
+                        <span>{weekDay}</span>
+                        <div className="w-1 h-1 bg-gray-300 rounded-full" />
+                        <span className="text-gray-900">{time.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}</span>
+                    </div>
+                    <div className="text-[9px] uppercase tracking-[0.2em] text-gray-300 font-medium">Digital Craftsmanship</div>
+                </motion.div>
+
+                {/* Right: Info Cluster */}
+                <div className="flex items-center gap-6 pointer-events-auto">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="hidden md:flex flex-col items-end gap-1"
+                    >
+                        <div className="flex items-center gap-2">
+                            <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="text-[9px] uppercase tracking-widest text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">Shanghai</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-[10px] font-medium text-gray-900">
+                            <div className="flex items-center gap-1 text-gray-600">
+                                <Clock className="w-3 h-3 text-gray-400" />
+                                {time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}
+                            </div>
+                            <div className="w-px h-2 bg-gray-200" />
+                            <div className="flex items-center gap-1 text-gray-600">
+                                <WeatherIcon className="w-3 h-3 text-gray-400" />
+                                {weather?.temp}°c
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    <motion.button
+                        whileHover={{ scale: 1.05, backgroundColor: '#111' }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-6 py-2.5 bg-gray-900 text-white rounded-full text-[10px] uppercase tracking-widest font-bold transition-all shadow-md hover:shadow-xl shadow-gray-200"
+                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
+                        Get In Touch
+                    </motion.button>
+                </div>
             </div>
 
             {/* Progress Bar */}
             <motion.div
-                className="absolute bottom-0 left-0 right-0 h-[1px] bg-foreground/10 origin-left"
+                className="absolute bottom-0 left-0 right-0 h-[1px] bg-gray-900/10 origin-left"
                 style={{ scaleX }}
             />
         </header>
