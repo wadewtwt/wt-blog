@@ -52,3 +52,28 @@ html {
   transform: translateY(0);
   opacity: 1;
 }
+
+/* Article Layout Styles */
+.article-body p { 
+  margin-bottom: 2rem; 
+  color: #374151; 
+  line-height: 1.8; 
+}
+.article-body h2 { 
+  font-family: var(--font-space-grotesk), sans-serif; 
+  font-size: 2rem; 
+  color: #111827; 
+  margin-top: 3.5rem; 
+  margin-bottom: 1.5rem; 
+  font-weight: 500; 
+  letter-spacing: -0.02em; 
+}
+.article-body blockquote { 
+  border-left: 2px solid #111827; 
+  padding-left: 1.5rem; 
+  font-style: italic; 
+  color: #111827; 
+  margin: 2.5rem 0; 
+  font-family: var(--font-italiana), serif; 
+  font-size: 1.25rem; 
+}

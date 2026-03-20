@@ -1,11 +1,14 @@
 'use client';
 
+import { useState } from "react";
+
+import Link from 'next/link';
 import Header from "@/components/Header";
 import NoiseBackground from "@/components/NoiseBackground";
 import Dock from "@/components/Dock";
 import ProjectCard from "@/components/ProjectCard";
 import ArticleItem from "@/components/ArticleItem";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
     {
@@ -65,6 +68,14 @@ const articles = [
 ];
 
 export default function Home() {
+    const [activeCategory, setActiveCategory] = useState("All");
+    
+    // 提取所有不重复的分类，并在最前面加上 All
+    const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
+    
+    // 根据当前选中的分类过滤项目
+    const filteredProjects = projects.filter(p => activeCategory === "All" || p.category === activeCategory);
+
     return (
         <main>
             <Header />
@@ -130,12 +141,17 @@ export default function Home() {
                                 <a href="#thoughts" className="text-blue-500 hover:text-blue-600 normal-case tracking-normal">更多 →</a>
                             </h3>
                             <ul className="space-y-5">
-                                {articles.slice(0, 2).map((article, i) => (
-                                    <li key={i} className="group cursor-pointer">
-                                        <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-[17px] mb-1">{article.title}</h4>
-                                        <p className="text-sm text-gray-500 line-clamp-1">{article.excerpt}</p>
-                                    </li>
-                                ))}
+                                {articles.slice(0, 2).map((article, i) => {
+                                    const slug = article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                                    return (
+                                        <li key={i} className="group cursor-pointer">
+                                            <Link href={`/blog/${slug}`} className="block">
+                                                <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-[17px] mb-1">{article.title}</h4>
+                                                <p className="text-sm text-gray-500 line-clamp-1">{article.excerpt}</p>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </motion.div>
 
@@ -172,16 +188,56 @@ export default function Home() {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="font-serif text-4xl md:text-5xl mb-12"
+                        className="font-serif text-4xl md:text-5xl mb-8"
                     >
                         Selected Works
                     </motion.h2>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
-                        {projects.map((project, index) => (
-                            <ProjectCard key={index} {...project} />
+                    {/* 分类过滤器组件 */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex flex-wrap gap-2 md:gap-3 mb-10 overflow-x-auto no-scrollbar pb-2"
+                    >
+                        {categories.map((category) => (
+                            <button
+                                key={category}
+                                onClick={() => setActiveCategory(category)}
+                                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap border ${
+                                    activeCategory === category 
+                                    ? "bg-gray-900 border-gray-900 text-white shadow-md cursor-default" 
+                                    : "bg-white border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-300"
+                                }`}
+                            >
+                                {category}
+                            </button>
                         ))}
-                    </div>
+                    </motion.div>
+
+                    <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
+                        <AnimatePresence mode="popLayout">
+                            {filteredProjects.map((project) => (
+                                <motion.div
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.8 }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                    key={project.title}
+                                    className={`w-full h-full ${project.span}`}
+                                >
+                                    {/* ProjectCard 内部会收到 w-full h-full 自动撑满此 motion Wrapper */}
+                                    <ProjectCard 
+                                        title={project.title} 
+                                        category={project.category} 
+                                        image={project.image} 
+                                        span="w-full h-full" 
+                                    />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                 </div>
             </section>
 
