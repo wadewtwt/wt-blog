@@ -10,21 +10,39 @@ import { motion } from "framer-motion";
 const projects = [
     {
         title: "Neon Horizons",
-        category: "Web Design / Development",
-        image: "https://images.unsplash.com/photo-1481487484168-9b930d5b7960?q=80&w=2670&auto=format&fit=crop",
-        color: "bg-blue-600/20"
+        category: "Web Design",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
+        span: "md:col-span-2 md:row-span-2"
     },
     {
         title: "Abstract Data",
         category: "Data Visualization",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-        color: "bg-purple-600/20"
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+        span: "md:col-span-1 md:row-span-1"
     },
     {
         title: "Retro Future",
         category: "App Interface",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2670&auto=format&fit=crop",
-        color: "bg-emerald-600/20"
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
+        span: "md:col-span-1 md:row-span-1"
+    },
+    {
+        title: "Lumina Workspace",
+        category: "Product Design",
+        image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop",
+        span: "md:col-span-2 md:row-span-1"
+    },
+    {
+        title: "Echo Architecture",
+        category: "3D Rendering",
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+        span: "md:col-span-1 md:row-span-1"
+    },
+    {
+        title: "Silent Symphony",
+        category: "Branding",
+        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
+        span: "md:col-span-1 md:row-span-1"
     }
 ];
 
@@ -159,7 +177,7 @@ export default function Home() {
                         Selected Works
                     </motion.h2>
 
-                    <div className="flex gap-8 overflow-x-auto no-scrollbar pb-10 px-4 snap-x snap-mandatory">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
                         {projects.map((project, index) => (
                             <ProjectCard key={index} {...project} />
                         ))}
