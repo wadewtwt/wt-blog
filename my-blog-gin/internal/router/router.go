@@ -13,6 +13,7 @@ func SetupRouter() *gin.Engine {
 	api := r.Group("/api")
 	{
 		api.GET("/ping", controller.Ping)
+		api.GET("/blogs", controller.GetBlogs) // 分页查询接口
 	}
 
 	return r
