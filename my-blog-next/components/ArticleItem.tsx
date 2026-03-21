@@ -17,7 +17,8 @@ export default function ArticleItem({ title, date, excerpt, delay }: ArticleItem
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: delay }}
                 className="group cursor-pointer border-b border-transparent hover:border-gray-100 transition-all pb-4"
             >
                 <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-2">

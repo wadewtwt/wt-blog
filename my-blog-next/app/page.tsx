@@ -312,13 +312,13 @@ export default function Home() {
                     </motion.div>
 
                     <motion.a
-                        href="mailto:hello@example.com"
+                        href="mailto:1809441@gmail.com"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
-                        className="font-serif text-5xl md:text-8xl hover:text-blue-600 transition-colors block mb-16 cursor-pointer text-gray-900 leading-none"
+                        className="font-serif text-5xl md:text-8xl hover:text-blue-600 transition-colors block mb-16 cursor-pointer text-gray-900 leading-none break-all"
                     >
-                        hello@wade.wt
+                        1809441@gmail.com
                     </motion.a>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-left border-t border-gray-200 pt-16">

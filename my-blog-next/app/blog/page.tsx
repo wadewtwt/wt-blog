@@ -37,21 +37,7 @@ export default function BlogList() {
 
             <section className="pt-32 pb-24 px-6 md:px-20 min-h-screen flex flex-col">
                 <div className="max-w-4xl mx-auto w-full flex-grow flex flex-col">
-                    <div className="flex items-center gap-4 mb-16">
-                        <motion.h1
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="font-serif text-5xl md:text-6xl text-gray-900"
-                        >
-                            Journal
-                        </motion.h1>
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1 }}
-                            transition={{ duration: 1 }}
-                            className="h-px flex-1 bg-gray-200 origin-left"
-                        />
-                    </div>
+
 
                     <div className="space-y-12 mb-16 flex-grow">
                         {currentArticles.map((article, index) => (
