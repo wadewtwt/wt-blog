@@ -6,7 +6,12 @@ import { CloudSun, Sun, Cloud, CloudRain, CloudSnow, CloudLightning, Clock, MapP
 import Link from 'next/link';
 
 export default function Header() {
+    const [mounted, setMounted] = useState(false);
     const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
     const [weather, setWeather] = useState<{ temp: number; description: string; icon: any } | null>(null);
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
@@ -90,9 +95,9 @@ export default function Header() {
                     className="hidden lg:flex flex-col items-center gap-1 pointer-events-auto"
                 >
                     <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">
-                        <span>{weekDay}</span>
+                        <span>{mounted ? weekDay : ''}</span>
                         <div className="w-1 h-1 bg-gray-300 rounded-full" />
-                        <span className="text-gray-900">{time.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}</span>
+                        <span className="text-gray-900">{mounted ? time.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }) : ''}</span>
                     </div>
                     <div className="text-[9px] uppercase tracking-[0.2em] text-gray-300 font-medium">Digital Craftsmanship</div>
                 </motion.div>
@@ -111,7 +116,7 @@ export default function Header() {
                         <div className="flex items-center gap-3 text-[10px] font-medium text-gray-900">
                             <div className="flex items-center gap-1 text-gray-600">
                                 <Clock className="w-3 h-3 text-gray-400" />
-                                {time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}
+                                {mounted ? time.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }) : '--:--'}
                             </div>
                             <div className="w-px h-2 bg-gray-200" />
                             <div className="flex items-center gap-1 text-gray-600">
