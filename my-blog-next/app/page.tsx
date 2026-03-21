@@ -8,6 +8,7 @@ import NoiseBackground from "@/components/NoiseBackground";
 import Dock from "@/components/Dock";
 import ProjectCard from "@/components/ProjectCard";
 import ArticleItem from "@/components/ArticleItem";
+import AnimatedGradient from "@/components/AnimatedGradient";
 import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
@@ -83,12 +84,15 @@ export default function Home() {
             <Dock />
 
             {/* Hero Section */}
-            <section id="hero" className="min-h-[90vh] flex flex-col justify-center px-6 md:px-20 pt-32 pb-20 overflow-hidden">
-                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <section id="hero" className="min-h-[90vh] flex flex-col justify-center px-6 md:px-20 pt-32 pb-20 overflow-hidden relative">
+                <AnimatedGradient />
+
+                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
                     <div className="lg:col-span-7 flex flex-col justify-center">
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.1 }}
                             className="text-sm md:text-base uppercase tracking-[0.2em] mb-4 text-gray-500"
                         >
@@ -97,6 +101,7 @@ export default function Home() {
                         <motion.h1
                             initial={{ opacity: 0, scaleY: 1.1, y: 50 }}
                             whileInView={{ opacity: 1, scaleY: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
                             className="font-serif text-6xl md:text-8xl leading-[1.0] mb-8 text-gray-900"
                         >
@@ -106,6 +111,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.3 }}
                             className="mb-8 border-l-4 border-gray-200 pl-6"
                         >
@@ -116,6 +122,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.4 }}
                             className="flex flex-wrap items-center gap-4"
                         >
@@ -133,6 +140,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 0.5, duration: 0.8 }}
                             className="p-6 md:p-8 rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                         >
@@ -159,6 +167,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 0.6, duration: 0.8 }}
                             className="p-6 md:p-8 rounded-2xl bg-white/80 backdrop-blur-md border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                         >
