@@ -3,6 +3,7 @@
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { CloudSun, Sun, Cloud, CloudRain, CloudSnow, CloudLightning, Clock, MapPin } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Header() {
     const [time, setTime] = useState(new Date());
@@ -76,10 +77,10 @@ export default function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     className="cursor-pointer group pointer-events-auto"
                 >
-                    <div className="flex items-center gap-3">
+                    <Link href="/" className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center text-white font-serif text-xl group-hover:rotate-[10deg] transition-transform duration-300 shadow-lg shadow-gray-200">W</div>
                         <span className="font-serif text-xl font-semibold tracking-tight hidden sm:block text-gray-900">Wade.wt</span>
-                    </div>
+                    </Link>
                 </motion.div>
 
                 {/* Center: Time & Manifesto */}

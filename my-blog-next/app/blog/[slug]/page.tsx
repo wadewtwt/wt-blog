@@ -13,7 +13,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         date: "Feb 24, 2024",
         readTime: "5 min read",
         category: "Design / Engineering",
-        coverImage: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2000&auto=format&fit=crop",
+        coverImage: "/images/blog-cover.jpg",
         content: `
             <p>在数字时代的浪潮中，我们不仅是在编写代码，更是在构建交互的艺术品。技术与美学的边界正变得前所未有的模糊。</p>
             

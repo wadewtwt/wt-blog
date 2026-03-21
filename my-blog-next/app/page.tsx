@@ -14,37 +14,37 @@ const projects = [
     {
         title: "Neon Horizons",
         category: "Web Design",
-        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop",
+        image: "/images/project1.jpg",
         span: "md:col-span-2 md:row-span-2"
     },
     {
         title: "Abstract Data",
         category: "Data Visualization",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+        image: "/images/project2.jpg",
         span: "md:col-span-1 md:row-span-1"
     },
     {
         title: "Retro Future",
         category: "App Interface",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
+        image: "/images/project3.jpg",
         span: "md:col-span-1 md:row-span-1"
     },
     {
         title: "Lumina Workspace",
         category: "Product Design",
-        image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=800&auto=format&fit=crop",
+        image: "/images/project4.jpg",
         span: "md:col-span-2 md:row-span-1"
     },
     {
         title: "Echo Architecture",
         category: "3D Rendering",
-        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+        image: "/images/project5.jpg",
         span: "md:col-span-1 md:row-span-1"
     },
     {
         title: "Silent Symphony",
         category: "Branding",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
+        image: "/images/project6.jpg",
         span: "md:col-span-1 md:row-span-1"
     }
 ];
@@ -265,6 +265,21 @@ export default function Home() {
                             <ArticleItem key={index} {...article} delay={index * 0.1} />
                         ))}
                     </div>
+
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="mt-16 flex justify-end"
+                    >
+                        <Link 
+                            href="/blog" 
+                            className="group flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors border-b border-transparent hover:border-gray-900 pb-0.5"
+                        >
+                            查看全部
+                            <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                        </Link>
+                    </motion.div>
                 </div>
             </section>
 
