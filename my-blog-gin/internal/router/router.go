@@ -14,6 +14,7 @@ func SetupRouter() *gin.Engine {
 	{
 		api.GET("/ping", controller.Ping)
 		api.GET("/blogs", controller.GetBlogs) // 分页查询接口
+		api.GET("/blog/:id", controller.GetBlogDetail) // 博客详情接口
 	}
 
 	return r

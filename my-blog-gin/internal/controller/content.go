@@ -30,7 +30,7 @@ func GetBlogs(c *gin.Context) {
 
 	// 3. 分页查询，按 ID 倒序，指定查询字段
 	offset := (page - 1) * pageSize
-	err := db.DB.Select([]string{"\"Id\"", "\"Title\"", "\"DateAdded\""}).Order("\"Id\" desc").Offset(offset).Limit(pageSize).Find(&blogs).Error
+	err := db.DB.Select([]string{"\"Id\"", "\"Title\"", "\"DateAdded\"", "\"AutoDesc\""}).Order("\"Id\" desc").Offset(offset).Limit(pageSize).Find(&blogs).Error
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -45,5 +45,31 @@ func GetBlogs(c *gin.Context) {
 		"total":    total,
 		"page":     page,
 		"pageSize": pageSize,
+	})
+}
+
+// GetBlogDetail 查询单篇博客详情
+func GetBlogDetail(c *gin.Context) {
+	idParam := c.Param("id")
+	id, err := strconv.Atoi(idParam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid blog ID",
+		})
+		return
+	}
+
+	var blog model.BlogContent
+	// 查询单个博客
+	err = db.DB.Where("\"Id\" = ?", id).First(&blog).Error
+	if err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "Blog not found",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"data": blog,
 	})
 }
