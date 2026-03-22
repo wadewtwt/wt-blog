@@ -4,16 +4,16 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface ArticleItemProps {
+    id: number;
     title: string;
     date: string;
     excerpt: string;
     delay: number;
 }
 
-export default function ArticleItem({ title, date, excerpt, delay }: ArticleItemProps) {
-    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+export default function ArticleItem({ id, title, date, excerpt, delay }: ArticleItemProps) {
     return (
-        <Link href={`/blog/${slug}`} className="block">
+        <Link href={`/blog/${id}`} className="block">
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

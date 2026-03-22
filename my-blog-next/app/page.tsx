@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Link from 'next/link';
 import Header from "@/components/Header";
@@ -50,26 +50,27 @@ const projects = [
     }
 ];
 
-const articles = [
-    {
-        title: "The Aesthetic of Clean Code",
-        date: "01.28.24",
-        excerpt: "How software architecture mirrors brutalist architecture in its honesty and exposure of function..."
-    },
-    {
-        title: "Digital Minimalism",
-        date: "01.25.24",
-        excerpt: "Stripping away the non-essential to reveal the core purpose of user interaction..."
-    },
-    {
-        title: "Photography as Code",
-        date: "01.20.24",
-        excerpt: "Capturing light is just another form of processing input data into a visual output..."
-    }
-];
+interface BlogContent {
+    id: number;
+    title: string;
+    dateAdded: string;
+    autoDesc: string;
+}
 
 export default function Home() {
     const [activeCategory, setActiveCategory] = useState("All");
+    const [articles, setArticles] = useState<BlogContent[]>([]);
+
+    useEffect(() => {
+        fetch('/api/blogs?page=1&pageSize=3')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.data) {
+                    setArticles(data.data);
+                }
+            })
+            .catch(err => console.error("Failed to fetch latest blogs:", err));
+    }, []);
     
     // 提取所有不重复的分类，并在最前面加上 All
     const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
@@ -149,17 +150,14 @@ export default function Home() {
                                 <a href="#thoughts" className="text-blue-500 hover:text-blue-600 normal-case tracking-normal">更多 →</a>
                             </h3>
                             <ul className="space-y-5">
-                                {articles.slice(0, 2).map((article, i) => {
-                                    const slug = article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-                                    return (
-                                        <li key={i} className="group cursor-pointer">
-                                            <Link href={`/blog/${slug}`} className="block">
-                                                <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-[17px] mb-1">{article.title}</h4>
-                                                <p className="text-sm text-gray-500 line-clamp-1">{article.excerpt}</p>
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
+                                {articles.map((article, i) => (
+                                    <li key={article.id} className="group cursor-pointer">
+                                        <Link href={`/blog/${article.id}`} className="block">
+                                            <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-[17px] mb-1">{article.title}</h4>
+                                            <p className="text-sm text-gray-500 line-clamp-1">{article.autoDesc || "No description available"}</p>
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </motion.div>
 
@@ -271,7 +269,14 @@ export default function Home() {
 
                     <div className="space-y-12">
                         {articles.map((article, index) => (
-                            <ArticleItem key={index} {...article} delay={index * 0.1} />
+                            <ArticleItem 
+                                key={article.id} 
+                                id={article.id}
+                                title={article.title}
+                                date={article.dateAdded ? article.dateAdded.substring(0, 10).replace(/-/g, '.') : ""}
+                                excerpt={article.autoDesc || "No description available"}
+                                delay={index * 0.1} 
+                            />
                         ))}
                     </div>
 
