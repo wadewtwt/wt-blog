@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import ArticleContent from './ArticleContent'; // Client component for Framer Motion
+import ArticleContent from './ArticleContent';
+import { marked } from 'marked';
 
 // Next.js dynamic route component
 export default async function BlogPost({ params }: { params: Promise<{ id: string }> }) {
@@ -19,9 +20,11 @@ export default async function BlogPost({ params }: { params: Promise<{ id: strin
                     title: apiPost.title || "Untitled",
                     date: apiPost.dateAdded ? apiPost.dateAdded.substring(0, 10).replace(/-/g, '.') : "Unknown Date",
                     readTime: "5 min read",
-                    category: apiPost.postType || "Design / Engineering",
+                    category: apiPost.postType || "Blog",
                     coverImage: "/images/blog-cover.jpg",
-                    content: apiPost.body || "<p>No content available.</p>"
+                    content: apiPost.isMarkdown === 1 
+                        ? await marked.parse(apiPost.body || "") 
+                        : (apiPost.body || "<p>No content available.</p>")
                 };
             }
         }

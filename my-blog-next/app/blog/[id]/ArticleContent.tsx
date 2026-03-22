@@ -59,7 +59,7 @@ export default function ArticleContent({ post }: { post: any }) {
 
                     {/* Prose Body */}
                     <div 
-                        className="article-body text-gray-700 leading-relaxed text-lg md:text-xl"
+                        className="article-body prose prose-lg prose-gray max-w-none md:prose-xl prose-headings:font-serif prose-a:text-blue-600 hover:prose-a:text-blue-500 text-gray-700 leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
                 </motion.div>
