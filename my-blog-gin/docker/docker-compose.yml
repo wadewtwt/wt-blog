@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: myuser    # 👈 自定义用户名 (别用 root，不安全)
       POSTGRES_PASSWORD: mypassword # 👈 自定义密码 (生产环境一定要改复杂的！)
-      POSTGRES_DB: mydatabase  # 👈 初始化时自动创建的数据库名
+      POSTGRES_DB: my-blog  # 👈 初始化时自动创建的数据库名
       PGDATA: /var/lib/postgresql/data/pgdata # 优化数据目录结构
     ports:
       - "5432:5432"            # 映射端口：本地 5432 -> 容器 5432
@@ -23,27 +23,9 @@ services:
       timeout: 5s
       retries: 5
 
-  # 2. pgAdmin 图形化管理工具 (可选，但强烈推荐！🎨)
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: my_local_pgadmin
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com # 👈 登录邮箱
-      PGADMIN_DEFAULT_PASSWORD: adminpassword  # 👈 登录密码
-      PGADMIN_CONFIG_SERVER_MODE: 'False'      # 单用户模式，更简单
-    ports:
-      - "5050:80"              # 访问地址：http://localhost:5050
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-    networks:
-      - pg_network
-    depends_on:
-      - db                     # 确保先启动数据库
 
 volumes:
   pg_data:                     # 定义数据卷
-  pgadmin_data:                # 定义 pgAdmin 数据卷
 
 networks:
   pg_network:                  # 定义内部网络

@@ -28,9 +28,9 @@ func GetBlogs(c *gin.Context) {
 	// 2. 统计总数
 	db.DB.Model(&model.BlogContent{}).Count(&total)
 
-	// 3. 分页查询，按 ID 倒序
+	// 3. 分页查询，按 ID 倒序，指定查询字段
 	offset := (page - 1) * pageSize
-	err := db.DB.Order("id desc").Offset(offset).Limit(pageSize).Find(&blogs).Error
+	err := db.DB.Select([]string{"\"Id\"", "\"Title\"", "\"DateAdded\""}).Order("\"Id\" desc").Offset(offset).Limit(pageSize).Find(&blogs).Error
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

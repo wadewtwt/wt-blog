@@ -35,6 +35,26 @@ go build -o app.exe cmd/app/main.go
 .\app.exe
 ```
 
+## 数据库运行环境 (Docker)
+
+本项目在 `docker` 目录下提供了 `docker-compose.yml`，用于快速构建本地所需的 PostgreSQL 数据库与 pgAdmin 图形化界面。
+
+**一键启动命令：**
+请在根目录下运行以下命令（或进入 `docker` 目录运行 `docker-compose up -d`）：
+
+```bash
+docker-compose -f docker/docker-compose.yml up -d
+```
+
+**服务说明：**
+*   **PostgreSQL**: `localhost:5432` 
+    * 账号: `myuser`
+    * 密码: `mypassword`
+    * 数据库: `mydatabase`
+*   **pgAdmin**: `http://localhost:5050`
+    * 邮箱: `admin@example.com`
+    * 密码: `adminpassword`
+
 ## 项目架构
 
 - `cmd/app`: 入口文件 `main.go`。
