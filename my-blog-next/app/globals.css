@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  --cursor-size: 20px;
+}
+
+body {
+  background-color: #FAFAFA;
+  color: #18181B;
+  overflow-x: hidden;
+}
+
+/* Noise Texture */
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Utilities from HTML */
+.reveal-text {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.active .reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Article Layout Styles */
+.article-body p { 
+  margin-bottom: 2rem; 
+  color: #374151; 
+  line-height: 1.8; 
+}
+.article-body h2 { 
+  font-family: var(--font-space-grotesk), sans-serif; 
+  font-size: 2rem; 
+  color: #111827; 
+  margin-top: 3.5rem; 
+  margin-bottom: 1.5rem; 
+  font-weight: 500; 
+  letter-spacing: -0.02em; 
+}
+.article-body blockquote { 
+  border-left: 2px solid #111827; 
+  padding-left: 1.5rem; 
+  font-style: italic; 
+  color: #111827; 
+  margin: 2.5rem 0; 
+  font-family: var(--font-italiana), serif; 
+  font-size: 1.25rem; 
+}
+
+/* inline code: `code` */
+.article-body :not(pre) > code {
+  background-color: #f3f4f6 !important;
+  color: #db2777 !important;
+  padding: 0.15rem 0.45rem !important;
+  border-radius: 0.3rem !important;
+  font-size: 0.875em !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  font-weight: 500 !important;
+  white-space: nowrap;
+  border: 1px solid #e5e7eb;
+}
+
+/* code blocks: ```...``` */
+.article-body pre {
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* reset inline code inside pre blocks */
+.article-body pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+/* images */
+.article-body img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+/* lists */
+.article-body ul, .article-body ol {
+  padding-left: 1.75rem;
+  margin: 1rem 0 2rem;
+}
+.article-body ul { list-style-type: disc; }
+.article-body ol { list-style-type: decimal; }
+.article-body li {
+  margin-bottom: 0.5rem;
+  color: #374151;
+  line-height: 1.8;
+}
+
+/* h3 */
+.article-body h3 {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: 1.4rem;
+  color: #111827;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* links */
+.article-body a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.article-body a:hover {
+  color: #1d4ed8;
+}

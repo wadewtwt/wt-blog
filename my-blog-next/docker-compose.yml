@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wt-blog-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: always
+    # 如果有多个服务（如 db），可以在这里添加
+    # networks:
+    #   - app-network
+
+# networks:
+#   app-network:
+#     driver: bridge
