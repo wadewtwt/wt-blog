@@ -13,41 +13,41 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
     {
-        title: "Neon Horizons",
-        category: "Web Design",
+        title: "VisionSyncServer视觉同步",
+        category: "exe应用",
         image: "/images/project1.jpg",
         span: "md:col-span-2 md:row-span-2"
     },
     {
-        title: "Abstract Data",
-        category: "Data Visualization",
+        title: "MyIP Pro",
+        category: "Chrome插件",
         image: "/images/project2.jpg",
         span: "md:col-span-1 md:row-span-1"
     },
     {
-        title: "Retro Future",
-        category: "App Interface",
+        title: "douban faster",
+        category: "Chrome插件",
         image: "/images/project3.jpg",
         span: "md:col-span-1 md:row-span-1"
     },
     {
-        title: "Lumina Workspace",
-        category: "Product Design",
+        title: "search-question-miniprogram",
+        category: "小程序",
         image: "/images/project4.jpg",
         span: "md:col-span-2 md:row-span-1"
     },
-    {
-        title: "Echo Architecture",
-        category: "3D Rendering",
-        image: "/images/project5.jpg",
-        span: "md:col-span-1 md:row-span-1"
-    },
-    {
-        title: "Silent Symphony",
-        category: "Branding",
-        image: "/images/project6.jpg",
-        span: "md:col-span-1 md:row-span-1"
-    }
+    // {
+    //     title: "Echo Architecture",
+    //     category: "3D Rendering",
+    //     image: "/images/project5.jpg",
+    //     span: "md:col-span-1 md:row-span-1"
+    // },
+    // {
+    //     title: "Silent Symphony",
+    //     category: "Branding",
+    //     image: "/images/project6.jpg",
+    //     span: "md:col-span-1 md:row-span-1"
+    // }
 ];
 
 interface BlogContent {
@@ -71,10 +71,10 @@ export default function Home() {
             })
             .catch(err => console.error("Failed to fetch latest blogs:", err));
     }, []);
-    
+
     // 提取所有不重复的分类，并在最前面加上 All
     const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
-    
+
     // 根据当前选中的分类过滤项目
     const filteredProjects = projects.filter(p => activeCategory === "All" || p.category === activeCategory);
 
@@ -173,7 +173,7 @@ export default function Home() {
                                 日常工具栈
                             </h3>
                             <div className="flex flex-wrap gap-2.5">
-                                {['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Figma', 'Node.js', 'VS Code'].map((tool, i) => (
+                                {['Java', 'Vibe Coding', 'Python', 'Go', 'PHP', 'Vue', 'MySQL', 'Redis', 'Nginx'].map((tool, i) => (
                                     <span key={i} className="px-3.5 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-100 transition-colors cursor-default">
                                         {tool}
                                     </span>
@@ -201,7 +201,7 @@ export default function Home() {
                     </motion.h2>
 
                     {/* 分类过滤器组件 */}
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -211,11 +211,10 @@ export default function Home() {
                             <button
                                 key={category}
                                 onClick={() => setActiveCategory(category)}
-                                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap border ${
-                                    activeCategory === category 
-                                    ? "bg-gray-900 border-gray-900 text-white shadow-md cursor-default" 
+                                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap border ${activeCategory === category
+                                    ? "bg-gray-900 border-gray-900 text-white shadow-md cursor-default"
                                     : "bg-white border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-900 hover:border-gray-300"
-                                }`}
+                                    }`}
                             >
                                 {category}
                             </button>
@@ -235,11 +234,11 @@ export default function Home() {
                                     className={`w-full h-full ${project.span}`}
                                 >
                                     {/* ProjectCard 内部会收到 w-full h-full 自动撑满此 motion Wrapper */}
-                                    <ProjectCard 
-                                        title={project.title} 
-                                        category={project.category} 
-                                        image={project.image} 
-                                        span="w-full h-full" 
+                                    <ProjectCard
+                                        title={project.title}
+                                        category={project.category}
+                                        image={project.image}
+                                        span="w-full h-full"
                                     />
                                 </motion.div>
                             ))}
@@ -269,25 +268,25 @@ export default function Home() {
 
                     <div className="space-y-12">
                         {articles.map((article, index) => (
-                            <ArticleItem 
-                                key={article.id} 
+                            <ArticleItem
+                                key={article.id}
                                 id={article.id}
                                 title={article.title}
                                 date={article.dateAdded ? article.dateAdded.substring(0, 10).replace(/-/g, '.') : ""}
                                 excerpt={article.autoDesc || "No description available"}
-                                delay={index * 0.1} 
+                                delay={index * 0.1}
                             />
                         ))}
                     </div>
 
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
                         className="mt-16 flex justify-end"
                     >
-                        <Link 
-                            href="/blog" 
+                        <Link
+                            href="/blog"
                             className="group flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors border-b border-transparent hover:border-gray-900 pb-0.5"
                         >
                             查看全部
