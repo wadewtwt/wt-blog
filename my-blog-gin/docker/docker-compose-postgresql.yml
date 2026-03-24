@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # 1. PostgreSQL 数据库服务
   db:
-    image: postgres:14-alpine  # 使用轻量级的 Alpine 版本，速度快，体积小 🚀
+    image: registry.cn-shanghai.aliyuncs.com/wt-pro/postgresql:v1  # 使用轻量级的 Alpine 版本，速度快，体积小 🚀
     container_name: my_local_pg
     restart: always            # 容器挂了自动重启 🔄
     environment:

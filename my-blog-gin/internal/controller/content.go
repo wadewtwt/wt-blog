@@ -31,7 +31,7 @@ func GetBlogs(c *gin.Context) {
 
 	// 3. 分页查询，按 ID 倒序，指定查询字段
 	offset := (page - 1) * pageSize
-	err := db.DB.Select([]string{"Id", "Title", "DateAdded", "AutoDesc"}).Order("Id desc").Offset(offset).Limit(pageSize).Find(&blogs).Error
+	err := db.DB.Select([]string{"id", "title", "date_added", "auto_desc"}).Order("id desc").Offset(offset).Limit(pageSize).Find(&blogs).Error
 
 	if err != nil {
 		log.Printf("Error fetching blogs from DB: %v", err) // 打印具体错误到控制台
@@ -64,7 +64,7 @@ func GetBlogDetail(c *gin.Context) {
 
 	var blog model.BlogContent
 	// 查询单个博客
-	err = db.DB.Where("Id = ?", id).First(&blog).Error
+	err = db.DB.Where("id = ?", id).First(&blog).Error
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": "Blog not found",
