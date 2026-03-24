@@ -1,0 +1,52 @@
+# ==============================================================================
+# Common & IDE Rules
+# ==============================================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.*
+
+# ==============================================================================
+# Gin Backend (my-blog-gin)
+# ==============================================================================
+my-blog-gin/*.exe
+my-blog-gin/*.exe~
+my-blog-gin/*.dll
+my-blog-gin/*.so
+my-blog-gin/*.dylib
+my-blog-gin/app
+my-blog-gin/app.exe
+my-blog-gin/*.test
+my-blog-gin/*.out
+my-blog-gin/coverage.txt
+my-blog-gin/go.work
+my-blog-gin/tmp/
+my-blog-gin/temp/
+my-blog-gin/build/
+my-blog-gin/*.log
+my-blog-gin/*.db
+my-blog-gin/*.sqlite
+my-blog-gin/docker/pg_data/
+
+# ==============================================================================
+# Next.js Frontend (my-blog-next)
+# ==============================================================================
+my-blog-next/node_modules/
+my-blog-next/.pnp/
+my-blog-next/.pnp.js
+my-blog-next/coverage/
+my-blog-next/.next/
+my-blog-next/out/
+my-blog-next/build/
+my-blog-next/*.pem
+my-blog-next/npm-debug.log*
+my-blog-next/yarn-debug.log*
+my-blog-next/yarn-error.log*
+my-blog-next/.pnpm-debug.log*
+my-blog-next/.vercel/
+my-blog-next/*.tsbuildinfo
+my-blog-next/next-env.d.ts
