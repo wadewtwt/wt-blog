@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.25-alpine AS builder
+FROM registry.cn-shanghai.aliyuncs.com/wt-pro/golang:v2 AS builder
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o main ./cmd/app/main.go
 
 # Run stage
-FROM alpine:latest
+FROM registry.cn-shanghai.aliyuncs.com/wt-pro/golang:v2
 
 WORKDIR /root/
 

@@ -44,6 +44,11 @@ go build -o app.exe cmd/app/main.go
 
 ```bash
 docker-compose -f docker-compose-go.yml up -d
+
+docker-compose up --build -d
+docker-compose ps
+docker-compose logs -f app
+
 ```
 
 **服务说明：**
