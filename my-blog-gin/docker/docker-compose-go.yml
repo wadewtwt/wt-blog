@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: blog-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+      - DB_NAME=my-blog
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - pg_network
+
+networks:
+  pg_network:
+    external: true
