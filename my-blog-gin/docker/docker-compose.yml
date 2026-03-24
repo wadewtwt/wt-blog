@@ -3,27 +3,37 @@ version: '3.8'
 services:
   # 1. PostgreSQL 数据库服务
   db:
-    image: postgres:14-alpine  # 使用轻量级的 Alpine 版本，速度快，体积小 🚀
+    image: registry.cn-shanghai.aliyuncs.com/wt-pro/postgresql:v1
     container_name: my_local_pg
-    restart: always            # 容器挂了自动重启 🔄
+    restart: always
     environment:
-      POSTGRES_USER: myuser    # 👈 自定义用户名 (别用 root，不安全)
-      POSTGRES_PASSWORD: mypassword # 👈 自定义密码 (生产环境一定要改复杂的！)
-      POSTGRES_DB: my-blog  # 👈 初始化时自动创建的数据库名
-      PGDATA: /var/lib/postgresql/data/pgdata # 优化数据目录结构
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: my-blog
     ports:
-      - "5432:5432"            # 映射端口：本地 5432 -> 容器 5432
+      - "5432:5432"
     volumes:
-      - ./pg_data:/var/lib/postgresql/data # 🔑 关键：数据持久化，删了容器数据还在！
-    networks:
-      - pg_network
-    healthcheck:               # 健康检查，确保数据库真的启动了
-      test: ["CMD-SHELL", "pg_isready -U myuser -d mydatabase"]
+      - ./pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d my-blog"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-
-volumes:
-  pg_data:                     # 定义数据卷
-
+  # 2. Go 后端服务
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: blog-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+      - DB_NAME=my-blog
+    depends_on:
+      db:
+        condition: service_healthy  # 关键：确保 db 的健康检查通过后再启动 app

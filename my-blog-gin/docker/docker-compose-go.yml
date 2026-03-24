@@ -17,9 +17,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    networks:
-      - pg_network
 
 networks:
-  pg_network:
-    external: true
+  default:
+    external:
+      name: blog-net

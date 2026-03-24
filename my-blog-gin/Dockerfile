@@ -21,8 +21,12 @@ FROM alpine:latest
 
 WORKDIR /root/
 
+# Install runtime dependencies
+RUN apk add --no-cache tzdata
+
 # Copy binary from builder
 COPY --from=builder /app/main .
+
 
 # Expose port
 EXPOSE 8080
