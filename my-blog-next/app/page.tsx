@@ -173,7 +173,7 @@ export default function Home() {
                                 日常工具栈
                             </h3>
                             <div className="flex flex-wrap gap-2.5">
-                                {['Java', 'Vibe Coding', 'Python', 'Go', 'PHP', 'Vue', 'MySQL', 'Redis', 'Nginx'].map((tool, i) => (
+                                {['Java', 'Vibe Coding', 'Python', 'Go', 'Docker', 'PHP', 'Vue', 'MySQL', 'Redis', 'Nginx'].map((tool, i) => (
                                     <span key={i} className="px-3.5 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium border border-gray-200 hover:bg-gray-100 transition-colors cursor-default">
                                         {tool}
                                     </span>

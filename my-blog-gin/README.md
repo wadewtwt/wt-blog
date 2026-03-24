@@ -43,7 +43,7 @@ go build -o app.exe cmd/app/main.go
 请在根目录下运行以下命令（或进入 `docker` 目录运行 `docker-compose up -d`）：
 
 ```bash
-docker-compose -f docker/docker-compose.yml up -d
+docker-compose -f docker-compose-go.yml up -d
 ```
 
 **服务说明：**

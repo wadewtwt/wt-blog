@@ -27,5 +27,3 @@ services:
 volumes:
   pg_data:                     # 定义数据卷
 
-networks:
-  pg_network:                  # 定义内部网络
